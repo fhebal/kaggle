@@ -1,4 +1,4 @@
-from dotenv import load_dotenv  # isort:skip
+from dotenv import load_dotenv  # noqa: E402 isort:skip
 
 load_dotenv()
 from kaggle.api.kaggle_api_extended import KaggleApi  # noqa: E402 isort:skip
