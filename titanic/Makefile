@@ -2,14 +2,14 @@ update-requirements:
 	python3 -m pip install -r requirements.txt
 	pre-commit install
 
-load_data:
-	python3 src.load_data
+load:
+	python3 src.load
 
-preprocessing:
-	python3 -m src.preprocessing
+prep:
+	python3 -m src.prep
 
-modeling:
-	python3 src.modeling
+model:
+	python3 src.model
 
-profiling:
-	python3 src.profiling
+profile:
+	python3 src.profile

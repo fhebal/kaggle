@@ -3,7 +3,6 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 
 load_dotenv()
 
-
 api = KaggleApi()
 api.authenticate()
 
