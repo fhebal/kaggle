@@ -18,7 +18,7 @@ profile:
 	fi
 
 model:
-	python3 src.model
+	python3 -m src.model
 
-prep:
-	python3 src.prep
+features:
+	python3 -m src.features

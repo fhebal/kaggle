@@ -1,29 +1,30 @@
-# experiment_config.yaml
-
 experiment_name: "baseline_model"
 
 data:
-  # Paths to your data files
-  train_data_path: "path/to/train/data.csv"
-  test_data_path: "path/to/test/data.csv"
+  # Paths to data files
+  train_data_path: "data/train.csv"
+  test_data_path: "data/test.csv"
   # Features configuration
   features:
     numeric:
-      - "age"
-      - "salary"
-      - "years_of_experience"
+      - "PassengerId"
+      - "Pclass"
+      - "Age"
+      - "SibSp"
+      - "Parch"
+      - "Fare"
     categorical:
-      - "job_role"
-      - "education_level"
-      - "department"
-  # Specify features to exclude, if any
-  exclude_features:
-    - "id"
-    - "timestamp"
+      - "Sex"
+      - "Cabin"
+      - "Embarked"
+    text:
+      - "Name"
+      - "Ticket"
+  target:
+    - "Survived"
 
 model:
-  # Model type can be customized (e.g., "DNN", "linear", "wide_and_deep")
-  type: "DNN"
+  type: "DNN" # e.g., "DNN", "linear", "wide_and_deep"
   parameters:
     learning_rate: 0.001
     batch_size: 32
