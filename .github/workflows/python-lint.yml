@@ -1,25 +1,31 @@
-name: Python Tests
+name: Python Code Style and Lint
 
 on: [push, pull_request]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.10]
+        python-version: [3.10]  # Specify your Python version(s) here
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+        
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
-        python3 -m pip install pytest
-        python3 -m pip install -r requirements.txt  # If you have additional dependencies
-    - name: Run tests with pytest
+        python3 -m pip install flake8 black
+        
+    - name: Check code style with Black
       run: |
-        python3 -m pytest
+        black --check .
+        
+    - name: Lint with Flake8
+      run: |
+        flake8 .
