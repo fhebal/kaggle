@@ -1,7 +1,7 @@
-from dotenv import load_dotenv
-from kaggle.api.kaggle_api_extended import KaggleApi
+from dotenv import load_dotenv  # isort:skip
 
 load_dotenv()
+from kaggle.api.kaggle_api_extended import KaggleApi  # noqa: E402 isort:skip
 
 api = KaggleApi()
 api.authenticate()
