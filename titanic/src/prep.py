@@ -1,17 +1,14 @@
-# primary_key
 def primary_key():
     pass
 
-# features
+
 def target():
     pass
 
 
-# features
-def 
-
-
+def features():
+    pass
 
 
 if __name__ == "__main__":
-    
+    pass
