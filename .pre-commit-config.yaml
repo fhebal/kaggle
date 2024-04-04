@@ -1,0 +1,10 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: stable  # Use a specific version or 'stable' for the latest stable release
+    hooks:
+      - id: black
+        language_version: python3
+  - repo: https://github.com/pycqa/flake8
+    rev: ''  # Specify a version
+    hooks:
+      - id: flake8
