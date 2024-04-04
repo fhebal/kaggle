@@ -1,2 +1,14 @@
 update-requirements:
-	pip3 install -r requirements.txt
+	python3 -m pip install -r requirements.txt
+
+load_data:
+	python3 src.load_data
+
+preprocessing:
+	python3 -m src.preprocessing
+
+modeling:
+	python3 src.modeling
+
+profiling:
+	python3 src.profiling
