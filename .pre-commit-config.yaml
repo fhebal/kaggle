@@ -1,4 +1,10 @@
 repos:
+  - repo: https://github.com/pycqa/isort
+    rev: ''  # Specify the version you want to use
+    hooks:
+      - id: isort
+        name: isort (Python imports)
+        types: [python]
   - repo: https://github.com/psf/black
     rev: stable  # Use a specific version or 'stable' for the latest stable release
     hooks:

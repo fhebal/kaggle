@@ -3,7 +3,7 @@ update-requirements:
 	pre-commit install
 
 load:
-	python3 src.load
+	python3 -m src.load
 
 prep:
 	python3 -m src.prep
