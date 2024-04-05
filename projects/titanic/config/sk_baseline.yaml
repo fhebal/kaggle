@@ -1,0 +1,55 @@
+pipeline_name: "baseline_model_sklearn"
+
+data:
+  train_data_path: "data/train.csv"
+  test_data_path: "data/test.csv"
+  target: "Survived"
+
+preprocessing:
+  numeric_features:
+    - "PassengerId"
+    - "Pclass"
+    - "Age"
+    - "SibSp"
+    - "Parch"
+    - "Fare"
+  numeric_transformer:
+    imputer:
+      strategy: "median"
+    scaler: "StandardScaler"
+  categorical_features:
+    - "Sex"
+    - "Cabin"
+#    - "Embarked"
+  categorical_transformer:
+    imputer:
+      strategy: "constant"
+      fill_value: "missing"
+    encoder: "OneHotEncoder"
+  text_features:
+    - "Name"
+#    - "Ticket"
+  text_transformer:
+    vectorizer: "CountVectorizer"
+
+model:
+  type: "LogisticRegression"
+  parameters:
+    C: 1.0
+    max_iter: 100
+
+training:
+  validation_split: 0.2
+  grid_search:
+    enabled: true
+    param_grid:
+      C: [0.1, 1.0, 10]
+      max_iter: [100, 200]
+    cv: 5
+
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "auc"
