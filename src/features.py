@@ -13,8 +13,18 @@ def CabinNumber(df):
     return df
 
 
-if __name__ == "__main__":
-    df = pd.read_csv("data/train.csv")
+def create_features(df):
     df = CabinLetter(df)
     df = CabinNumber(df)
     print(df.head())
+    return df
+
+
+if __name__ == "__main__":
+    df = pd.read_csv("data/train.csv")
+    create_features(df)
+    df.to_csv("data/features/train.csv", index=False)
+
+    df = pd.read_csv("data/test.csv")
+    create_features(df)
+    df.to_csv("data/features/test.csv", index=False)

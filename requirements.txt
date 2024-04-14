@@ -1,4 +1,4 @@
-kaggle==1.6.8
+kaggle==1.6.11
 python-dotenv==1.0.1
 pre-commit==3.7.0
 ydata-profiling==4.7.0

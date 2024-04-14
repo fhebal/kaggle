@@ -2,7 +2,7 @@ update-requirements:
 	python3 -m pip install -r requirements.txt
 	pre-commit install
 
-test:
+lint:
 	pre-commit run --all-files
 
 load:
@@ -22,3 +22,11 @@ model:
 
 features:
 	python3 -m src.features
+
+eda:	
+	python3 -m src.eda
+
+mlfow:
+	mlflow server --default-artifact-root ./mlartifacts/
+	export MLFLOW_TRACKING_URI='http://127.0.0.1:5000'
+	mlflow server --default-artifact-root ./mlartifacts --host 0.0.0.0 --port 5000

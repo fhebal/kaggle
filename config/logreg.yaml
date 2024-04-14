@@ -1,8 +1,8 @@
 pipeline_name: "baseline_model_sklearn"
 
 data:
-  train_data_path: "data/train.csv"
-  test_data_path: "data/test.csv"
+  train_data_path: "data/features/train.csv"
+  test_data_path: "data/features/test.csv"
   target: "Survived"
 
 preprocessing:
@@ -13,14 +13,15 @@ preprocessing:
     - "SibSp"
     - "Parch"
     - "Fare"
+    - "CabinNumber"
   numeric_transformer:
     imputer:
       strategy: "median"
     scaler: "StandardScaler"
   categorical_features:
     - "Sex"
-    - "Cabin"
-#    - "Embarked"
+    - "CabinLetter"
+    - "Embarked"
   categorical_transformer:
     imputer:
       strategy: "constant"
