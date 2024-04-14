@@ -1,9 +1,11 @@
 import logging
+import random
 import uuid
 
 import mlflow
 import pandas as pd
 import yaml
+from faker import Faker
 from mlflow import log_metrics, log_params
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (  # noqa E501
@@ -16,6 +18,17 @@ from sklearn.model_selection import train_test_split
 
 from src.utils.sklearn import build_model, build_preprocessor
 
+fake = Faker()
+
+
+def generate_custom_name():
+    word1 = fake.color_name()
+    word2 = fake.last_name()
+    number = str(random.randint(1000, 9999))
+
+    return word1+"-"+word2+"-"+number
+
+
 unused_model = LogisticRegression()
 run_id = str(uuid.uuid4())
 logger = logging.getLogger(__name__)
@@ -27,15 +40,14 @@ def load_config(path):
 
 
 def run_pipeline(config_path):
-    mlflow.start_run(run_name="Baseline Model Experiment")
+    mlflow.start_run(run_name=generate_custom_name())
     config = load_config(config_path)
     mlflow.log_artifact(config_path)
 
     params = {
-        "model_type": config["model"]["type"],
-        "numeric_features": config["preprocessing"]["numeric_features"],
-        "categorical_features": config["preprocessing"]["categorical_features"], # noqa E501
-        "text_features": config["preprocessing"]["text_features"],
+        "model": config["model"],
+        "preprocessing": config["preprocessing"],
+        "training": config["training"],
     }
     log_params(params)
 
@@ -46,7 +58,7 @@ def run_pipeline(config_path):
     X_train, X_test, y_train, y_test = train_test_split(
         X_train,
         y_train,
-        test_size=0.2,
+        test_size=config['training']['validation_split'],
         random_state=42
         )
 
@@ -69,7 +81,6 @@ def run_pipeline(config_path):
         }
     )
 
-    # End the MLflow experiment
     mlflow.end_run()
 
 

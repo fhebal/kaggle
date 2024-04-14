@@ -7,13 +7,18 @@ data:
 
 preprocessing:
   numeric_features:
-    - "PassengerId"
+    # - "PassengerId"
     - "Pclass"
     - "Age"
     - "SibSp"
     - "Parch"
     - "Fare"
     - "CabinNumber"
+    - "TicketNumber"
+    - "FamilySizePolyX"
+    # - "FamilySize"
+    # - "AgeMissing"
+    # - "CabinMissing"
   numeric_transformer:
     imputer:
       strategy: "median"
@@ -22,17 +27,20 @@ preprocessing:
     - "Sex"
     - "CabinLetter"
     - "Embarked"
+    - "TicketLetter"
   categorical_transformer:
     imputer:
       strategy: "constant"
       fill_value: "missing"
     encoder: "OneHotEncoder"
-  text_features:
+  text_feature_1:
     - "Name"
-#    - "Ticket"
-  text_transformer:
+  text_transformer_1:
+    vectorizer: "TfidfVectorizer"
+  text_feature_2:
+    - "Ticket"
+  text_transformer_2:
     vectorizer: "CountVectorizer"
-
 model:
   type: "LogisticRegression"
   parameters:
@@ -41,12 +49,12 @@ model:
 
 training:
   validation_split: 0.2
-  grid_search:
-    enabled: true
-    param_grid:
-      C: [0.1, 1.0, 10]
-      max_iter: [100, 200]
-    cv: 5
+  # grid_search:
+  #   enabled: true
+  #   param_grid:
+  #     C: [0.1, 1.0, 10]
+  #     max_iter: [100, 200]
+  #   cv: 5
 
 evaluation:
   metrics:

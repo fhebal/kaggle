@@ -1,8 +1,8 @@
 update-requirements:
 	python3 -m pip install -r requirements.txt
-	pre-commit install
 
 lint:
+#	pre-commit install
 	pre-commit run --all-files
 
 load:
