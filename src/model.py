@@ -66,7 +66,6 @@ def run_pipeline(config_path):
             "precision": precision_score(y_test, y_pred, average="macro"),
             "recall": recall_score(y_test, y_pred, average="macro"),
             "auc": roc_auc_score(y_test, y_pred_proba, average="macro"),
-            #            "kaggle": kaggle_score,
         }
     )
 
